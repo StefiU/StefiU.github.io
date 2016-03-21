@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21/03/2016, 19:24:14
+    Author     : surrea
+*/
+
+html, body {
+    background-color: lightgoldenrodyellow;
+    height: 100%; /* hacer que la página llene toda la altura */
+}
+*{
+    margin: 0.5;  /* márgenes podrían meter la pata */
+}
+a:link   
+{   
+ text-decoration:none;   /* quita subrayado a los enlaces */
+}   
+#contenidoprincipal  {
+    height: 83%;  /* empuja el pie hacia abajo */
+}
+#piedepagina {
+    height: 50px;  /* establece la altura del pie de página */
+    margin-top: -50px;  /* estas cifras tienen que ser opostas */
+    text-align: right;
+    font-family: 'Merriweather';
+}
+
+.fuenteTitulo{
+    font-family: 'Merriweather';    
+    text-transform: uppercase;
+    text-shadow: #2d2f2d 2px 2px 4px;
+}
+
+.fuente{
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2em;
+}
+
+.centrar{
+    text-align: center;
+}
+
+.margenSup{
+    margin-top: 100px;
+}
