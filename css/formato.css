@@ -37,7 +37,7 @@ a:link
 
 .fuente{
     font-family: 'Pacifico', cursive;
-    font-size: 1.2em;
+    font-size: 5.0em;
 }
 
 .centrar{
@@ -46,4 +46,8 @@ a:link
 
 .margenSup{
     margin-top: 100px;
+}
+
+.background{
+    background-image: url("imagenes/fondo.png") 
 }
