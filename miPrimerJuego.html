@@ -6,11 +6,130 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Adivina El Numero</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/formato.css">
+        <link href='https://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+               
     </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+    
+    <body style="text-align: center;" onload="generarNumero()">
+
+       <div class="cajita">
+       <article>
+         <p> 
+            <div id="tituloJuego" class="titulo"> Adivina El Numero </div>
+            <br><br>
+            <input  id="txtIngresado" type="text" onkeydown="inicioJugar(event)" style="text-align: center" class="fuenteJuego">
+            <br><br> 
+            <div id="resultados" class="fuenteJuego"> </div>
+            <div id="termino" class="funteGano centrar"></div>
+        </article>
+        </div>   
+     
+    <script>
+      var nroRandom= 0;
+      var cantDigitos= 0;
+      var intentos=0;
+
+    function generarNumero()
+    {
+        nroRandom= Math.floor(Math.random() * (10000 - 1000)) + 1000;
+        console.log(nroRandom);
+    }
+
+    function inicioJugar(event) 
+    {
+        var nroJugador; //le asigno a nroJugador lo que esta en txtIngresado
+               
+        if((event.keyCode == 13) && (cantDigitos == 4)) //es enter y la cantidad de nros ingresados es 4 verifica el nro 
+        {
+            nroJugador = document.getElementById("txtIngresado").value; //le asigno a nroJugador lo que esta en txtIngresado
+            intentos++;
+            realizarEvalucion(nroJugador);
+        } 
+        else
+        {
+            if ((event.keyCode == 8) && (cantDigitos >0)) //si es para borrar y la cantidad de digitos mayor que 0 puede borrar
+                   cantDigitos--;
+            else 
+            {
+               if ((sinSimbolos(event,/^[0-9]+$/)) && (cantDigitos <4)) 
+               {
+                    cantDigitos++;
+                    
+                    if ((event.keyCode==48) && (cantDigitos == 1)) //simbolo inicial igual a 0
+                    {
+                        cantDigitos--;
+                        event.preventDefault();
+                    }
+                }
+                else
+                    event.preventDefault();
+            }
+        }
+    }
+    
+    function realizarEvalucion(nroJugador)
+    {
+        var nroIngresado= nroJugador.toString(); //pasa a String el nro ingresado
+        var nroGenerado= nroRandom.toString();  //pasa a String el nro generado
+        
+        var rta= generarResultado(nroIngresado, nroGenerado);
+                     
+        if (rta[0]==4) //si en la posicion de los bien hay 4 es porque ganó
+        {    
+            document.getElementById("resultados").innerHTML=""; //Se pone en blanco la parte de resultados 
+            document.getElementById("termino").innerHTML="<a>GENIAL ENCONTRASTE EL NUMERO!! <br><br> LO HAS HECHO EN " + intentos + " INTENTOS</a>";
+        }
+        else
+        {
+           var resultParcial = document.getElementById("resultados");  
+           resultParcial.innerHTML+= "<br> <a style='color: #FF33FF'>" + nroJugador + ":</a> " + "<a style='color: #99FF33'>" + rta[0] + " BIEN"+",</a> "+ "<a style='color: #FFFF00'>" + rta[1] + " REGULAR"+",</a> "+ "<a style='color: #FF0000'>" + rta[2] + " MAL"+"</a>"
+           document.getElementById("txtIngresado").value = "";
+	}
+      
+       cantDigitos= 0;
+    }
+    
+    function sinSimbolos(evento,simbolos) 
+    {
+        var c= String.fromCharCode(evento.keyCode);
+        
+        return (simbolos.test(c)); //El método test comprueba si existe un patrón dentro de una cadena
+    }
+    
+    function generarResultado (nroIngresado, nroGenerado)
+    {
+        var posi;
+        var i;
+        var result= new Array(0,0,0);
+
+        if (nroIngresado.localeCompare(nroGenerado)!=0) //distindo de 0 => diferentes si es 0 es porque son iguales
+        {
+            for (i=0;i<4;i++) 
+            {
+                posi= nroGenerado.indexOf(nroIngresado.charAt(i)); //devuelve el indice si el carater está, sino -1
+
+                if (posi == -1) 
+                    result[2]++; //mal ++
+                else 
+                {
+                    if (posi == i)
+                        result[0]++; //bien ++
+                    else 
+                        result[1]++; //regular ++
+                } 
+            }
+        } 
+        else 
+            result[0]=4;   //perfecto
+        
+       return result; 
+    }
+    </script>
+   </body>
 </html>

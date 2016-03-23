@@ -9,37 +9,70 @@ and open the template in the editor.
 */
 
 html, body {
-    background-color: lightgoldenrodyellow;
-    height: 100%; /* hacer que la página llene toda la altura */
+  background-image: url("C:/Users/Stefani/Documents/NetBeansProjects/StefiU.github.io/imagenes/fondo.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  height: 80%;
 }
+
 *{
     margin: 0.5;  /* márgenes podrían meter la pata */
 }
+
 a:link   
 {   
- text-decoration:none;   /* quita subrayado a los enlaces */
+    text-decoration:none;
+    font-family: 'Philosopher', sans-serif; 
+    color: white;
+    font-size: 3.00ex;
 }   
-#contenidoprincipal  {
-    height: 83%;  /* empuja el pie hacia abajo */
-}
-#piedepagina {
-    height: 50px;  /* establece la altura del pie de página */
-    margin-top: -50px;  /* estas cifras tienen que ser opostas */
-    text-align: right;
-    font-family: 'Merriweather';
+
+#menu{
+    color: white;
+    height: 100%;  /* empuja el pie hacia abajo */
 }
 
-.fuenteTitulo{
-    font-family: 'Merriweather';    
-    text-transform: uppercase;
-    text-shadow: #2d2f2d 2px 2px 4px;
+#txtPpal  {
+    height: 83%;  /* empuja el pie hacia abajo */
+}
+
+#pieDePagina {
+    height: 50px;  
+    margin-top: -50px;  
+    color: #ffccff;
+    text-align: right;
+    font-family: 'Indie Flower', cursive;
+    font-size: 3.00ex;
+}
+
+.titulo{
+    font-family: 'Philosopher', sans-serif; 
+    color: white;
+    font-size: 3.00em;
 }
 
 .fuente{
-    font-family: 'Pacifico', cursive;
-    font-size: 5.0em;
-}
+    font-family: 'Philosopher', sans-serif;
+    font-size: 1.00em;
+ }
 
+.fuenteJuego{
+    font-family: 'Philosopher', sans-serif;
+    //font-family: 'Merriweather', serif;
+    font-size: 20px;
+ }
+ 
+ .fuenteGano{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80px;
+    color: white;
+ } 
+ 
+.resultadosFont{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+ 
 .centrar{
     text-align: center;
 }
@@ -48,6 +81,19 @@ a:link
     margin-top: 100px;
 }
 
-.background{
-    background-image: url("imagenes/fondo.png") 
+.cajita {
+    width: 90%;
+    max-width:1000px;
+    margin:auto;
+}
+article {
+	background:rgba(28,8,33,.9);
+	padding:20px;
+	margin:20px 0;
+	color:#fff;
+	box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+article p {
+	line-height: 25px;
 }
