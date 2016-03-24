@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Adivina El Numero</title>
+        <title>Adivina El Número</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/formato.css">
         <link href='https://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
@@ -21,11 +21,11 @@ and open the template in the editor.
        <div class="cajita">
        <article>
          <p> 
-            <div id="tituloJuego" class="titulo"> Adivina El Numero </div>
+            <div id="tituloJuego" class="titulo"> El Juego del Número </div>
             <br><br>
-            <div id="instruccion" class="fuenteJuego"> Introducir un numero de 4 dígitos</div>
+            <div id="instruccion" class="fuenteJuego"> Introducir un número de 4 dígitos <br> para intentar adivinar el número</div>
             <br>
-            <input  id="txtIngresado" type="text" onkeydown="inicioJugar(event)" style="text-align: center" class="fuenteJuego">
+            <input  id="txtIngresado" type="text" onkeyup="inicioJugar()" style="text-align: center" class="fuenteJuego">
             <br><br> 
             <div id="resultados" class="fuenteJuego"> </div>
             <div id="termino" class="funteGano centrar"></div>
@@ -43,7 +43,7 @@ and open the template in the editor.
         console.log(nroRandom);
     }
 
-    function inicioJugar(event) 
+    /*function inicioJugar(event)  //utilizando onkeydown="inicioJugar(event)"
     {
         var nroJugador; //le asigno a nroJugador lo que esta en txtIngresado
                
@@ -73,8 +73,29 @@ and open the template in the editor.
                     event.preventDefault();
             }
         }
-    }
+    }*/
     
+    function inicioJugar()
+    {		
+	var nroJugador = document.getElementById("txtIngresado").value;
+	cantDigitos = nroJugador.length;
+        
+        //isNaN verifica que solo sea un numero
+	if (nroJugador == 0 || cantDigitos > 4 || isNaN(nroJugador))
+        {
+            alert("Ingresar un número de cuatro dígitos que no comience con cero");
+            document.getElementById("txtIngresado").value =''//limpia input			
+	}
+	else
+        {         
+            if (cantDigitos == 4)
+            {
+		intentos++;
+                realizarEvalucion(nroJugador);
+            }	
+        }
+    }
+
     function realizarEvalucion(nroJugador)
     {
         var nroIngresado= nroJugador.toString(); //pasa a String el nro ingresado
@@ -84,6 +105,7 @@ and open the template in the editor.
                      
         if (rta[0]==4) //si en la posicion de los bien hay 4 es porque ganó
         {    
+            document.getElementById("txtIngresado").disabled = true;//bloquea el input
             document.getElementById("resultados").innerHTML=""; //Se pone en blanco la parte de resultados 
             document.getElementById("termino").innerHTML="<a>GENIAL ENCONTRASTE EL NUMERO!! <br><br> LO HAS HECHO EN " + intentos + " INTENTOS</a>";
         }
